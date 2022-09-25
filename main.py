@@ -6,7 +6,7 @@ from tkinter import messagebox
 import requests
 
 
-# Creat window
+# Create window
 root = Tk()
 root.title("E-commerce Client")
 
@@ -18,7 +18,7 @@ root.geometry("{}x{}+0+0".format(window_width, window_height))
 
 # =============================================================================
 # global variable
-token =  None
+token = None
 domain = 'http://127.0.0.1:8000/api/v1/'
 
 # Table
@@ -27,7 +27,7 @@ item_aera.place(relx=0.52, rely=0.12, relwidth=0.5, relheight=0.78)
 
 my_tree = ttk.Treeview(item_aera, height=10)
 
-# variables
+# tkinter variables
 em = StringVar()
 passwd = StringVar()
 ID = StringVar()
@@ -36,8 +36,6 @@ price = StringVar()
 stock = StringVar()
 
 # =============================================================================
-
-
 def get_data():
     id = ID.get()
     product_name = name.get()
@@ -75,6 +73,7 @@ def add_product():
         my_tree.delete(*my_tree.get_children())
         table_display(my_tree)
 
+
 def delete_product():
     id, name, price, stock = get_data()
 
@@ -83,12 +82,12 @@ def delete_product():
     print(results)
     status_code = results.status_code
 
-
     if status_code != 204:
         messagebox.showerror("Error", "Not Found")
     else:
         my_tree.delete(*my_tree.get_children())
         table_display(my_tree)
+
 
 def edit_product():
     id, name, price, stock = get_data()
@@ -120,23 +119,20 @@ def inventory():
     product = LabelFrame(root, text='Items', font="-family {Poppins} -size 20")
     product.place(relx=0.05, rely=0.15, relwidth=0.45, relheight=0.7)
 
-
-    add_btn = TkinterCustomButton(master=product, corner_radius=20, text="Add", command=add_product)
+    add_btn = Button(master=product, text="Add", command=add_product)
     add_btn.place(relx=0.21, rely=0.9)
 
-    remove_btn = TkinterCustomButton(master=product, corner_radius=20, text="Delete", command=delete_product)
+    remove_btn = Button(master=product, text="Delete", command=delete_product)
     remove_btn.place(relx=0.41, rely=0.9)
 
-    edit_btn = TkinterCustomButton(master=product, corner_radius=20, text="Edit", command=edit_product)
+    edit_btn = Button(master=product, text="Edit", command=edit_product)
     edit_btn.place(relx=0.61, rely=0.9)
 
-
     # ==========================================================================
-
     # ID
     Label(product, text='ID(only for edit and delete)', font="-family {Poppins} -size 14").place(relx=0.05, rely=0.1)
     entry1 = Entry(product)
-    entry1.place(relx=0.05, rely=0.15, relwidth=0.7, relheight=0.05)
+    entry1.place(relx=0.05, rely=0.2, relwidth=0.7, relheight=0.05)
     entry1.configure(font="-family {Poppins} -size 14")
     entry1.configure(relief="flat")
     entry1.configure(textvariable=ID)
@@ -144,7 +140,7 @@ def inventory():
     # Item
     Label(product, text='Product Name', font="-family {Poppins} -size 14").place(relx=0.05, rely=0.3)
     entry2 = Entry(product)
-    entry2.place(relx=0.05, rely=0.35, relwidth=0.7, relheight=0.05)
+    entry2.place(relx=0.05, rely=0.4, relwidth=0.7, relheight=0.05)
     entry2.configure(font="-family {Poppins} -size 14")
     entry2.configure(relief="flat")
     entry2.configure(textvariable=name)
@@ -152,7 +148,7 @@ def inventory():
     # quantity
     Label(product, text='In Stock', font="-family {Poppins} -size 14").place(relx=0.05, rely=0.5)
     entry3 = Entry(product)
-    entry3.place(relx=0.05, rely=0.55, relwidth=0.7, relheight=0.05)
+    entry3.place(relx=0.05, rely=0.6, relwidth=0.7, relheight=0.05)
     entry3.configure(font="-family {Poppins} -size 14")
     entry3.configure(relief="flat")
     entry3.configure(textvariable=price)
@@ -160,12 +156,10 @@ def inventory():
     # price
     Label(product, text='Price', font="-family {Poppins} -size 14").place(relx=0.05, rely=0.7)
     entry4 = Entry(product)
-    entry4.place(relx=0.05, rely=0.75, relwidth=0.7, relheight=0.05)
+    entry4.place(relx=0.05, rely=0.8, relwidth=0.7, relheight=0.05)
     entry4.configure(font="-family {Poppins} -size 14")
     entry4.configure(relief="flat")
     entry4.configure(textvariable=stock)
-
-
 
     my_tree.place(relx=0, rely=0, relwidth=0.9, relheight=1)
     style = ttk.Style()
@@ -184,7 +178,6 @@ def inventory():
     my_tree.column('Price', anchor=E, width=50)
     my_tree.column('Stock', anchor=E, width=50)
     my_tree.column('Category', anchor=CENTER, width=200)
-
 
     # Create Headings
     my_tree.heading('#0', text='', anchor=W)
@@ -264,25 +257,25 @@ Label(login_window,text='Email', font="-family {Poppins} -size 14" ).place(relx=
 
 # login entry
 entry1 = Entry(master=login_window)
-entry1.place(relx=0.1, rely=0.2, relwidth=0.7, relheight=0.1)
+entry1.place(relx=0.1, rely=0.25, relwidth=0.7, relheight=0.1)
 entry1.configure(font="-family {Poppins} -size 14")
 entry1.configure(relief="flat")
 entry1.configure(textvariable=em)
 
 
 #password label
-Label(login_window,text='Password', font="-family {Poppins} -size 14" ).place(relx=0.1, rely=0.4)
+Label(login_window,text='Password', font="-family {Poppins} -size 14" ).place(relx=0.1, rely=0.5)
 # password entry
 entry2 = Entry(master=login_window)
-entry2.place(relx=0.1, rely=0.5, relwidth=0.7, relheight=0.1)
+entry2.place(relx=0.1, rely=0.65, relwidth=0.7, relheight=0.1)
 entry2.configure(font="-family {Poppins} -size 14")
 entry2.configure(relief="flat")
 entry2.configure(show="*")
 entry2.configure(textvariable=passwd)
 
 # login_buttons
-button1 = TkinterCustomButton(master=login_window, corner_radius=20,text="LOGIN", command=login)
-button1.place(relx=0.5, rely=0.8,  anchor=CENTER)
+button1 = Button(master=login_window,text="LOGIN", command=login)
+button1.place(relx=0.5, rely=0.9,  anchor=CENTER)
 
 
 
