@@ -3,8 +3,6 @@ import sqlite3
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
-from PIL import ImageTk, Image
-from custom_button import TkinterCustomButton
 import requests
 
 
