@@ -1,0 +1,2 @@
+sudo docker build --tag ecommerce-client .
+sudo docker run ecommerce-client
